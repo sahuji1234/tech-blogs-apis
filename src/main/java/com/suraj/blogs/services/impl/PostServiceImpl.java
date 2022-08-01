@@ -1,11 +1,14 @@
 package com.suraj.blogs.services.impl;
 
+import java.awt.print.Pageable;
 import java.util.Date;
 import java.util.List;import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.suraj.blogs.entities.Category;
@@ -64,10 +67,16 @@ public class PostServiceImpl implements PostService{
 	}
 
 	@Override
-	public List<PostDto> getAllPosts() {
-	List<Post> posts= this.postRepo.findAll();
-	List<PostDto> dtos = posts.stream().map(post -> this.modelMapper.map(post,PostDto.class)).collect(Collectors.toList());	
-	return dtos;
+	public List<PostDto> getAllPosts(Integer pageNumber ,Integer pageSize) {
+		
+		PageRequest p = PageRequest.of(pageNumber, pageSize);
+				
+	    Page<Post> pagePosts= this.postRepo.findAll(p);
+	    List<Post> posts=  pagePosts.getContent();
+	
+	
+	    List<PostDto> dtos = posts.stream().map(post -> this.modelMapper.map(post,PostDto.class)).collect(Collectors.toList());	
+	    return dtos;
 	}
 
 	@Override

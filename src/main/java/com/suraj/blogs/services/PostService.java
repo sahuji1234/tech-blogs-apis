@@ -3,7 +3,6 @@ package com.suraj.blogs.services;
 import java.util.List;
 
 
-import com.suraj.blogs.entities.Post;
 import com.suraj.blogs.payloads.PostDto;
 
 public interface PostService {
@@ -14,7 +13,7 @@ public interface PostService {
 	
 	void deletePost(Integer postId);
 	
-	List<PostDto> getAllPosts();
+	List<PostDto> getAllPosts(Integer pageNumber, Integer pageSize);
 	
 	PostDto getPostById(Integer postId);
 	
