@@ -1,8 +1,10 @@
 package com.suraj.blogs.payloads;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
-
+import com.suraj.blogs.entities.Comment;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -22,6 +24,8 @@ private String imageName;
 private Date addedDate;
 private UserDto user;
 private CategoryDto category;
+
+private Set<CommentsDto> comments = new HashSet<>();
 
 	
 }

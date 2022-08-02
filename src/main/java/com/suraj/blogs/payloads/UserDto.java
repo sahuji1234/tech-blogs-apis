@@ -1,5 +1,10 @@
 package com.suraj.blogs.payloads;
 
+import java.util.HashSet;
+import java.util.Set;
+
+import com.suraj.blogs.entities.Comment;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,5 +27,7 @@ public class UserDto {
 	private String state;
 	private int zip;
 	private Long phone;
+	
+	private Set<CommentsDto> comments = new HashSet<>();
 	
 }
