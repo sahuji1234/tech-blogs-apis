@@ -36,6 +36,7 @@ public class Post {
 	
 	private String imageName;
 	
+	
 	private Date addedDate;
 	
 	@ManyToOne()

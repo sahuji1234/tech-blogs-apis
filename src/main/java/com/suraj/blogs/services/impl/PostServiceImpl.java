@@ -74,9 +74,9 @@ public class PostServiceImpl implements PostService{
 		Sort sort = null;
 	//	Sort sort =(sortDir.equalsIgnoreCase("asc")) ?Sort.by(sortDir).ascending():Sort.by(sortDir).descending();
 		if(sortDir.equalsIgnoreCase("asc")) {
-			sort = Sort.by(sortDir).ascending();
+			sort = Sort.by(sortBy).ascending();
 		}else {
-			sort = Sort.by(sortDir).descending();
+			sort = Sort.by(sortBy).descending();
 		}
 		
 		PageRequest p = PageRequest.of(pageNumber, pageSize,sort);
@@ -88,6 +88,7 @@ public class PostServiceImpl implements PostService{
 	    List<PostDto> dtos = posts.stream().map(post -> this.modelMapper.map(post,PostDto.class)).collect(Collectors.toList());	
 	   
 	    PostResponse postResponse = new PostResponse();
+	    System.out.println(pagePosts);
 	    postResponse.setContent(dtos);
 	    postResponse.setPageNumber(pagePosts.getNumber());
 	    postResponse.setPageSize(pagePosts.getSize());

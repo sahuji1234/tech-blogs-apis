@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import com.suraj.blogs.entities.Comment;
+import com.suraj.blogs.entities.Role;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,5 +30,7 @@ public class UserDto {
 	private Long phone;
 	
 	private Set<CommentsDto> comments = new HashSet<>();
+	
+	private Set<RoleDto> roles = new HashSet<>();
 	
 }
