@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -51,6 +52,8 @@ public class User implements UserDetails {
 	@Size(min =4, message ="user name must be minimum of 4 characters")
 	private String name;
 	
+	
+	@Column(unique = true)
 	@Email(message = "your given email address is not valid")
 	private String email;
 	
@@ -61,6 +64,7 @@ public class User implements UserDetails {
 	
 	@NotEmpty(message = "address must not be blank")
 	private String address;
+	
 	private String alternateAddress;
 	private String city;
 	private String state;

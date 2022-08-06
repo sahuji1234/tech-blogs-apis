@@ -63,8 +63,7 @@ public ResponseEntity<JwtAuthResponse> createToken(@RequestBody JwtAuthRequest r
 	}
 	
 	
-	// register new user api
-	
+	// register new user api	
 	@PostMapping("/register")
 	public ResponseEntity<UserDto> registeUser(@RequestBody UserDto user){
 		UserDto registerNewUser = this.userService.registerNewUser(user);
