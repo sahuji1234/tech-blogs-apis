@@ -22,7 +22,7 @@ import com.suraj.blogs.payloads.UserDto;
 import com.suraj.blogs.services.UserService;
 
 @RestController
-@RequestMapping("/api/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
 	@Autowired

@@ -31,7 +31,7 @@ import com.suraj.blogs.services.impl.PostServiceImpl;
 import com.suraj.blogs.utils.AppConstants;
 
 @RestController
-@RequestMapping("/api/")
+@RequestMapping("/api/v1")
 public class PostController {
 
 	@Autowired
@@ -104,7 +104,7 @@ public class PostController {
 	
 	//File related operations
 	
-	@PostMapping("/post/image/upload/{postId}")
+	@PostMapping("/post/image/upload/{PostId}")
 	public ResponseEntity<PostDto> uploadPostImage(
 			@PathVariable Integer PostId,
 			@RequestParam("image") MultipartFile image

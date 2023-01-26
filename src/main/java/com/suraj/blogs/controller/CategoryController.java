@@ -21,7 +21,7 @@ import com.suraj.blogs.payloads.CategoryDto;
 import com.suraj.blogs.services.impl.CategoryServiceImpl;
 
 @RestController
-@RequestMapping("/api/categories")
+@RequestMapping("/api/v1/categories")
 public class CategoryController {
 
  @Autowired

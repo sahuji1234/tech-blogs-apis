@@ -1,7 +1,9 @@
 package com.suraj.blogs;
 
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,8 +57,21 @@ public class BlogAppApiApplication implements CommandLineRunner {
 			// TODO: handle exception
 		}
 		
-	}
-
-	
+//		Addable a= (c,b)-> c+b;
+//		int sum =a.sum(5, 6);
+//		System.out.println(sum);
+//		
+//		List<Integer> list = new ArrayList<>();
+//		list.add(1);
+//		list.add(20);
+//		list.add(30);
+//		
+//		List<Integer> filteredArray= list.stream().filter(k-> k>10).collect(Collectors.toList());
+//		filteredArray.forEach(l-> System.out.println(l));
+	   }
+//
+//	public interface Addable {
+//		  int sum(int a,int b);
+//		}
 	
 }

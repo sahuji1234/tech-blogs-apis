@@ -125,7 +125,12 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public UserDto registerNewUser(UserDto userDto) {
 		User user = this.modelMapper.map(userDto, User.class);
-	//encrypt user
+		// logic to check if user already existed
+  //		Optional<User> existedUser = this.userRepo.findByEmail(user.getEmail());
+  //		if(existedUser!=null) {
+  //			return this.modelMapper.map(null,UserDto.class);
+  //		}
+	    //encrypt user
 		user.setPassword(this.passwordEncoder.encode(user.getPassword()));
 		
 		//roles

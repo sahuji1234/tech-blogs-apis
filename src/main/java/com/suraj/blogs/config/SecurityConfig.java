@@ -102,6 +102,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		
 	    FilterRegistrationBean bean = new FilterRegistrationBean(new CorsFilter(source));
 		
+	     bean.setOrder(-110);
 		return bean;
 	}
 	

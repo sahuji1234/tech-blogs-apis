@@ -3,6 +3,8 @@ package com.suraj.blogs.payloads;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.suraj.blogs.entities.Comment;
 import com.suraj.blogs.entities.Role;
 
@@ -17,8 +19,7 @@ import lombok.Setter;
 @Setter
 public class UserDto {
 
-	private int id;
-	
+	private int id;	
 	private String name;
 	private String email;
 	private String password;
@@ -32,5 +33,17 @@ public class UserDto {
 	private Set<CommentsDto> comments = new HashSet<>();
 	
 	private Set<RoleDto> roles = new HashSet<>();
+	
+	@JsonIgnore
+	public String getPassword()
+	{
+		return this.password;
+	}	
+	
+	@JsonProperty
+	public void setPassword(String password)
+	{
+		this.password = password;
+	}
 	
 }

@@ -1,5 +1,6 @@
 package com.suraj.blogs.controller;
 
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.suraj.blogs.entities.User;
 import com.suraj.blogs.exceptions.ApiException;
 import com.suraj.blogs.payloads.JwtAuthRequest;
 import com.suraj.blogs.payloads.UserDto;
@@ -37,6 +39,9 @@ public class AuthController {
 	@Autowired
 	private UserService userService;
 	
+	@Autowired
+	private ModelMapper mapper;
+	
 	
 	@PostMapping("/login")
 public ResponseEntity<JwtAuthResponse> createToken(@RequestBody JwtAuthRequest req) throws Exception{
@@ -44,8 +49,10 @@ public ResponseEntity<JwtAuthResponse> createToken(@RequestBody JwtAuthRequest r
 		this.authenticated(req.getUsername(),req.getPassword());
 		UserDetails details = this.service.loadUserByUsername(req.getUsername());
 		String generateToken = this.helper.generateToken(details);
+		
 		JwtAuthResponse response = new JwtAuthResponse();
 		response.setToken(generateToken);
+	    response.setUser(this.mapper.map((User)details, UserDto.class));
 		return new ResponseEntity<JwtAuthResponse>(response,HttpStatus.OK);
 	
 }

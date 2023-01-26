@@ -18,7 +18,7 @@ import com.suraj.blogs.payloads.CommentsDto;
 import com.suraj.blogs.services.impl.CommentServiceImpl;
 
 @RestController
-@RequestMapping("api/comments")
+@RequestMapping("api/v1/comments")
 public class CommentController {
 
 	@Autowired
