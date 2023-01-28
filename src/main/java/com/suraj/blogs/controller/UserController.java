@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.suraj.blogs.payloads.ApiResponse;
+import com.suraj.blogs.payloads.JwtAuthRequest;
 import com.suraj.blogs.payloads.UserDto;
 import com.suraj.blogs.services.UserService;
 
@@ -61,7 +62,10 @@ public class UserController {
 		return ResponseEntity.ok(this.userService.getUserById(userId));
 	}
 	
-	
+	@GetMapping("/forgetPassword")
+	public ResponseEntity<JwtAuthRequest> updatePassword(@RequestBody JwtAuthRequest user){
+		return ResponseEntity.ok(this.userService.updatePassword(user));
+	}
 	
 	
 	

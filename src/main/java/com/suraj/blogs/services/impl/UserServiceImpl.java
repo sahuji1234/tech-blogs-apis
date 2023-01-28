@@ -7,11 +7,15 @@ import java.util.stream.Collectors;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.suraj.blogs.entities.Role;
 import com.suraj.blogs.entities.User;
+import com.suraj.blogs.payloads.JwtAuthRequest;
 import com.suraj.blogs.payloads.UserDto;
 import com.suraj.blogs.repositories.RoleRepo;
 import com.suraj.blogs.repositories.UserRepo;
@@ -36,6 +40,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private RoleRepo roleRepo;
+	
+	@Autowired
+	private UserDetailsService service;
 	
 	@Override
 	public UserDto createUser(UserDto userDto) {
@@ -139,6 +146,22 @@ public class UserServiceImpl implements UserService{
 		User savedUser = this.userRepo.save(user);
 			
 		return this.modelMapper.map(savedUser,UserDto.class);
+	}
+
+	@Override
+	public JwtAuthRequest updatePassword(JwtAuthRequest user) {
+		try {
+		UserDetails userDetails = this.service.loadUserByUsername(user.getUsername());
+		JwtAuthRequest jwtAuthRequest = new JwtAuthRequest();
+		jwtAuthRequest.setUsername(user.getUsername());
+		jwtAuthRequest.setPassword(this.passwordEncoder.encode(user.getPassword()));
+		int updatedUserPassword = this.userRepo.save(jwtAuthRequest.getUsername(),jwtAuthRequest.getPassword());
+		return jwtAuthRequest;
+		}catch (UsernameNotFoundException e) {
+			JwtAuthRequest jwtAuthRequest = new JwtAuthRequest();
+			return jwtAuthRequest;
+		}
+		
 	}
 	
 }
