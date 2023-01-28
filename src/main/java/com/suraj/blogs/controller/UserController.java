@@ -62,8 +62,8 @@ public class UserController {
 		return ResponseEntity.ok(this.userService.getUserById(userId));
 	}
 	
-	@GetMapping("/forgetPassword")
-	public ResponseEntity<JwtAuthRequest> updatePassword(@RequestBody JwtAuthRequest user){
+	@PostMapping("/forgetPassword")
+	public ResponseEntity<JwtAuthRequest> updatePassword(@Valid @RequestBody JwtAuthRequest user){
 		return ResponseEntity.ok(this.userService.updatePassword(user));
 	}
 	
