@@ -13,5 +13,6 @@ public interface UserService {
 	List<UserDto> getAllUsers();
 	void deleteUser(Integer userId);
 	JwtAuthRequest updatePassword(JwtAuthRequest user);
+	boolean checkUser(String username);
 	
 }

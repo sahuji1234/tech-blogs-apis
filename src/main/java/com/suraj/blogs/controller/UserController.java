@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.suraj.blogs.payloads.ApiResponse;
@@ -64,9 +65,15 @@ public class UserController {
 	
 	@PostMapping("/forgetPassword")
 	public ResponseEntity<JwtAuthRequest> updatePassword(@Valid @RequestBody JwtAuthRequest user){
+		System.out.println("password ==>"+user.getPassword());
 		return ResponseEntity.ok(this.userService.updatePassword(user));
 	}
 	
+	@GetMapping("/checkUser")
+	public boolean checkUser(@RequestParam("username") String username) {
+		System.out.print(username);
+	   return this.userService.checkUser(username);
+	}
 	
 	
 	

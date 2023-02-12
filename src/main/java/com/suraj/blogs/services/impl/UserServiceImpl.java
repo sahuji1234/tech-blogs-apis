@@ -19,6 +19,7 @@ import com.suraj.blogs.payloads.JwtAuthRequest;
 import com.suraj.blogs.payloads.UserDto;
 import com.suraj.blogs.repositories.RoleRepo;
 import com.suraj.blogs.repositories.UserRepo;
+import com.suraj.blogs.security.CustomUserDetailsService;
 import com.suraj.blogs.services.UserService;
 import com.suraj.blogs.utils.AppConstants;
 import com.suraj.blogs.exceptions.*;
@@ -43,6 +44,9 @@ public class UserServiceImpl implements UserService{
 	
 	@Autowired
 	private UserDetailsService service;
+	
+	@Autowired
+    private CustomUserDetailsService customeUserDetailsService;
 	
 	@Override
 	public UserDto createUser(UserDto userDto) {
@@ -162,6 +166,15 @@ public class UserServiceImpl implements UserService{
 			return jwtAuthRequest;
 		}
 		
+	}
+
+	@Override
+	public boolean checkUser(String username) {
+		UserDetails user = this.customeUserDetailsService.loadUserByUsername(username);
+		if(user!=null) {
+			return true;
+		}
+		return false;
 	}
 	
 }
